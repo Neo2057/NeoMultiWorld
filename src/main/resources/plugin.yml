@@ -1,0 +1,6 @@
+name: NeoMultiWorld
+version: ${project.version}
+main: neo2057.github.io.git.neomultiworld.NeoMultiWorld
+api-version: 1.16
+authors: [ ore ]
+description: tobu
