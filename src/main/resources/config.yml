@@ -1,0 +1,13 @@
+Worlds:
+  world:
+    name: world
+  world_nether:
+    name: world_nether
+  world_the_end:
+    name: world_the_end
+Portals:
+  woo:
+    world: aaaa
+    x: 10
+    y: 70
+    z: 510

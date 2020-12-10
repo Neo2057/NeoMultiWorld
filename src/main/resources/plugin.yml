@@ -4,3 +4,10 @@ main: neo2057.github.io.git.neomultiworld.NeoMultiWorld
 api-version: 1.16
 authors: [ ore ]
 description: tobu
+commands:
+  nmw:
+    description: a-dako-da
+    usage: /nmw help
+  nmp:
+    description: a-dako-da
+    usage: /nmp help
