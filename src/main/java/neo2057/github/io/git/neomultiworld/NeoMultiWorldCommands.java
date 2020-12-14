@@ -94,30 +94,35 @@ public class NeoMultiWorldCommands implements CommandExecutor {
             }
             //ワールドのテレポート
             if(args[0].equalsIgnoreCase("tp")) {
-                if(args.length != 2 && args.length != 3) {
-                    pl.sendMessage("[NMW]/nmw tp [worldName] or /nmw tp [worldName] [playerName]");
-                    return false; }
-
+                //入力エラー
+                if(args.length != 2 && args.length != 3 && args.length != 4 && args.length != 5) {
+                    pl.sendMessage("[NMW]/nmw tp [worldName] <yaw> <pitch>\n[NMW]/nmw tp [worldName] [playerName] <yaw> <pitch>");
+                    return true; }
+                //ワールドnull
                 if(Bukkit.getWorld(args[1]) == null){
                     pl.sendMessage("[NMW]"+args[1]+"というワールドは読み込まれていません");
-                    return false;
+                    return true;
                 }
                 World w = Bukkit.getWorld(args[1]);
                 assert w != null;
-                Location loc = new Location(w,w.getSpawnLocation().getX(),w.getSpawnLocation().getY(),w.getSpawnLocation().getZ());
 
-                if (args.length == 3){
+                if(args.length == 2){
+                    pl.teleport(new Location(w,w.getSpawnLocation().getX(),w.getSpawnLocation().getY(),w.getSpawnLocation().getZ()));
+                    return true;
+                }else if (args.length == 3){
                     Player player = Bukkit.getPlayer(args[2]);
                     assert player != null;
-                    if(Objects.isNull(player)){
-                        System.out.println(args[2]);
-                        return false;
-                    }
-                    player.teleport(loc);
-                } else{
-                    pl.teleport(loc);
+                    player.teleport(new Location(w,w.getSpawnLocation().getX(),w.getSpawnLocation().getY(),w.getSpawnLocation().getZ()));
+                    return true;
+                }else if(args.length == 4){
+                    pl.teleport(new Location(w,w.getSpawnLocation().getX(),w.getSpawnLocation().getY(),w.getSpawnLocation().getZ(),Integer.parseInt(args[2]),Integer.parseInt(args[3])));
+                    return true;
+                }else {
+                    Player player = Bukkit.getPlayer(args[2]);
+                    assert player != null;
+                    player.teleport(new Location(w,w.getSpawnLocation().getX(),w.getSpawnLocation().getY(),w.getSpawnLocation().getZ(),Integer.parseInt(args[3]),Integer.parseInt(args[4])));
+                    return true;
                 }
-                return true;
             }
         }
         return false;
